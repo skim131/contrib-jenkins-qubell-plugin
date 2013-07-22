@@ -1,0 +1,41 @@
+<!--
+Copyright 2013 Qubell, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+         xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+
+    <f:optionalBlock name="instanceOptions" title="Use custom instance id" checked="${instance.instanceId != null}">
+        <f:entry title="Custom Instance Id" field="instanceId" value="${instance.instanceId}">
+            <f:textbox />
+        </f:entry>
+    </f:optionalBlock>
+
+    <f:entry title="Name" field="name">
+        <f:textbox/>
+    </f:entry>
+
+    <f:entry field="timeout" title="Timeout (s)">
+        <f:textbox default="60"/>
+    </f:entry>
+
+    <f:entry field="extraParameters" title="Extra parameters (json map)">
+        <f:textarea default="{}"/>
+    </f:entry>
+
+    <f:entry field="outputFilePath" title="Relative path to command output file">
+        <f:textbox/>
+    </f:entry>
+</j:jelly>
