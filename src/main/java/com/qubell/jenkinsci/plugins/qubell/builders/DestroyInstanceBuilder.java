@@ -21,7 +21,7 @@ import hudson.Extension;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 /**
- * Destroys a qubell instance, by using pre-saved instance id (see {@link StartInstanceBuilder})
+ * Destroys a Qubell instance, by using pre-saved instance id (see {@link StartInstanceBuilder})
  * After destroy is initiated, waits for instance to turn into Destroyed state.
  *
  * @author Alex Krupnov

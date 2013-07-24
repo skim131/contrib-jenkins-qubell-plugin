@@ -194,7 +194,7 @@ public abstract class QubellBuilder extends Builder {
      *
      *
      * @param buildLog build log
-     * @param instance application instance to be queries
+     * @param instance application instance to be queried for the status
      * @return instance status
      * @throws InvalidCredentialsException when configuration contains invalid credentials
      */

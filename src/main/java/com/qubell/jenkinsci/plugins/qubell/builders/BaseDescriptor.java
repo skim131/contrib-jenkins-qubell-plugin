@@ -28,7 +28,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 
 /**
- * Base type for {@link QubellBuilder} decendants
+ * Base descriptor type for {@link QubellBuilder} descendants
  *
  * @author Alex Krupnov
  */
