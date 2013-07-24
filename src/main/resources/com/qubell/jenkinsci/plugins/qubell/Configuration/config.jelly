@@ -29,6 +29,12 @@ limitations under the License.
                  description="Your password">
             <f:password />
         </f:entry>
+
+        <f:entry title="Status Polling Interval" field="statusPollingInterval"
+                 description="Interval for instance status polling (seconds)">
+            <f:textbox/>
+        </f:entry>
+
         <!--
 
             <f:validateButton

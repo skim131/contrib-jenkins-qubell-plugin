@@ -168,8 +168,7 @@ public abstract class QubellBuilder extends Builder {
 
         StopWatch sw = new StopWatch();
         sw.start();
-        int waitTime = timeout / 10;
-        waitTime = waitTime < 5 ? 5 : waitTime;
+
         int attempt = 0;
 
         while (true) {
@@ -185,7 +184,7 @@ public abstract class QubellBuilder extends Builder {
                 return true;
             }
 
-            Thread.sleep(waitTime * 1000);
+            Thread.sleep(getConfiguration().getStatusPollingInterval() * 1000);
         }
 
     }
