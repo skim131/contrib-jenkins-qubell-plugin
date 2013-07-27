@@ -10,7 +10,7 @@
     <groupId>com.qubell.jenkins-ci.plugins</groupId>
     <artifactId>qubell</artifactId>
     <name>Qubell Plugin</name>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>hpi</packaging>
 
     <developers>
