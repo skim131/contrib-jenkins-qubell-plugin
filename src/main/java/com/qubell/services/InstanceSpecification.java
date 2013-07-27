@@ -34,6 +34,16 @@ public class InstanceSpecification {
     }
 
     /**
+     * Initializes Instance Specification with target application and its version
+     * @param application target application to use
+     * @version version of application to launch
+     */
+    public InstanceSpecification(Application application, String version) {
+        this.application = application;
+        this.version = version;
+    }
+
+    /**
      * Initializes Instance Specification with target application, friendly name and version
      * @param application target application to use
      * @param instanceName desired instance friendly name (optional)
