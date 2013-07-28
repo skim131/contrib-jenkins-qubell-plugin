@@ -56,12 +56,13 @@ public class LaunchInstanceRequestBuilder extends AbstractRequestBuilder<LaunchI
     }
 
     /**
-     * Adds destroy interval (if not null)
+     * Adds destroy interval (if valid)
+     * Valid destroy interval lies between -1 (never destroyed) to maximum long value
      * @param value value of interval
      * @return builder itself
      */
     public LaunchInstanceRequestBuilder addDestroyInterval(long value) {
-        if (value >= 0) {
+        if (value >= -1) {
             targetFields.put(DESTROY_INTERVAL_KEY, value);
         }
         return this;

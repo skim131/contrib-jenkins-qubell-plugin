@@ -186,9 +186,11 @@ public class StartInstanceBuilder extends QubellBuilder {
 
         Application application = new Application(applicationId);
 
+        String updatedVersion;
+
         try {
-            String version = getServiceFacade().updateManifest(application, manifest);
-            logMessage(buildLog, "Manifest updated. New version is %s", version);
+            updatedVersion = getServiceFacade().updateManifest(application, manifest);
+            logMessage(buildLog, "Manifest updated. New version is %s", updatedVersion);
         } catch (InvalidCredentialsException e) {
             logMessage(buildLog, "Error when updating manifest: invalid credentials.");
             build.setResult(Result.FAILURE);
@@ -203,7 +205,7 @@ public class StartInstanceBuilder extends QubellBuilder {
 
         Instance instance;
         try {
-            instance = getServiceFacade().launchInstance(new InstanceSpecification(application),
+            instance = getServiceFacade().launchInstance(new InstanceSpecification(application, updatedVersion),
                     new LaunchSettings(environmentId, JsonParser.parseMap(extraParameters)));
 
             logMessage(buildLog, "Launched instance %s", instance.getId());

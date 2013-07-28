@@ -24,8 +24,8 @@ import java.util.Map;
  */
 public class LaunchSettings {
     private String environmentId;
-    //Default of zero makes instance immortal
-    private long destroyInterval = -1;
+    //Keep long value invalid by default so user has to specify proper value from interval of [-1, infinite)
+    private long destroyInterval = Long.MIN_VALUE;
     private Map<String, Object> parameters;
 
     /**
@@ -45,7 +45,7 @@ public class LaunchSettings {
     /**
      * Initializes settings with parameters, destroy interval and  environment id
      * @param parameters launch parameters (optional)
-     * @param destroyInterval instance destroy interval in milliseconds (optional), 0 for immortal instance
+     * @param destroyInterval instance destroy interval in milliseconds (optional), -1 for immortal instance
      * @param environmentId environment id to be used (optional)
      */
     public LaunchSettings(String environmentId, long destroyInterval, Map<String, Object> parameters) {
