@@ -23,3 +23,7 @@ Compatibility
 
 This plug-in uses [Qubell Platform API v. 1.3](http://docs.qubell.com/api) and can be used with Qubell Platform R19
 and above, either Express or Enterprise editions.
+
+Screenshot
+----------
+![Build steps to launch and execute a command](https://raw.github.com/wiki/qubell/contrib-jenkins-qubell-plugin/build-step-config.png)
