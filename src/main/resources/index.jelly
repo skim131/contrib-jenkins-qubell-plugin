@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <div>
-    Provides custom build steps for interacting with Qubell, the first platform to effectively manage the continuous change to your online enterprise applications
+    This plug-in provides custom build steps for launching and managing application instances using Qubell Adapative Platform-as-a-Service.
     <br/>
     <a href="http://www.qubell.com/">www.qubell.com</a>
 </div>
