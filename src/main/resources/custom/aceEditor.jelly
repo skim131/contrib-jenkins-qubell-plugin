@@ -1,0 +1,82 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:f="/lib/form">
+  <st:documentation>
+    Ace editor
+
+    <st:attribute name="field">
+      Used for databinding.
+    </st:attribute>
+    <st:attribute name="name">
+      This becomes @name of the  tag.
+      If @field is specified, this value is inferred from it.
+    </st:attribute>
+    <st:attribute name="value">
+      The initial value of the field. This becomes the value of the editor
+      If @field is specified, the current property from the "instance" object
+      will be set as the initial value automatically,
+      which is the recommended approach.
+    </st:attribute>
+    <st:attribute name="default">
+      The default value of the text box, in case both @value is and 'instance[field]' is null.
+    </st:attribute>
+    <st:attribute name="checkUrl">
+      If specified, the value entered in this input field will be checked (via AJAX)
+      against this URL, and errors will be rendered under the text field.
+
+      If @field is specified, this will be inferred automatically,
+      which is the recommended approach.
+    </st:attribute>
+    <st:attribute name="checkMethod">
+      If specified, the HTTP method to use for input field will be checked (via AJAX)
+    </st:attribute>
+  </st:documentation>
+
+  <f:prepareDatabinding />
+  <j:set var="value" value="${attrs.value ?: instance[attrs.field] ?: attrs.default}" />
+  <j:set var="aceid" value="${h.generateId()}"/>
+
+
+
+  <div class="ace" id="${aceid}" onload="init${aceid}()" style="height: 150px; width: 100%;position: relative !important; border: 1px solid lightgray; margin: auto;"/>
+
+  <textarea id="ta${aceid}" style="${attrs.style}"
+            name ="${attrs.name ?: '_.'+attrs.field}"
+            class="setting-input ${attrs.checkUrl!=null?'validated':''} ${attrs['codemirror-mode']!=null?'codemirror':''} ${attrs.class}"
+            checkUrl="${attrs.checkUrl}" checkMethod="${attrs.checkMethod}"
+            rows="${h.determineRows(value)}"
+            readonly="${attrs.readonly}"
+            codemirror-mode="${attrs['codemirror-mode']}"
+            codemirror-config="${attrs['codemirror-config']}"><st:out value="${value}" /></textarea>
+   <script>
+
+    //Preventing double load of ace script
+    var node = document.getElementsByTagName("head")[0] || document.body;
+    if(!document.getElementById("acescript")){
+        var script = document.createElement("script");
+        script.type="text/javascript";
+        script.src = "${resURL}/plugin/qubell/ace/ace.js";
+        script.id = "acescript";
+        node.appendChild(script);
+    }
+
+   Behaviour.specify("DIV.ace", 'textarea', 100, function (e) {
+        var editor = ace.edit(e.id);
+        var textarea = document.getElementById("ta" + e.id);
+        textarea.style.display = "none";
+        editor.getSession().setValue(textarea.value);
+
+        //Synchronize real text area and ace
+        editor.getSession().on('change', function(){
+            textarea.value = editor.getSession().getValue();
+            textarea.onchange();
+        });
+
+        //Trigger validation when focus left
+        editor.getSession().on('blur', function(){
+            textarea.onchange();
+        });
+
+      });
+
+    </script>
+</j:jelly>
