@@ -19,9 +19,14 @@ package com.qubell.services;
 import com.qubell.jenkinsci.plugins.qubell.Configuration;
 import com.qubell.services.exceptions.InvalidCredentialsException;
 import com.qubell.services.exceptions.InvalidInputException;
+import com.qubell.services.toa.ApplicationTOA;
+import com.qubell.services.toa.EnvironmentTOA;
 import com.qubell.services.toa.InstanceStatusTOA;
 import com.qubell.services.ws.*;
+import com.qubell.services.ws.Organization;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,10 +36,17 @@ import java.util.Map;
 public class QubellFacadeImpl implements QubellFacade {
     private Configuration configuration;
 
+    /**
+     * Gets an organization service implementation
+     * @return instance of org service
+     */
+    protected OrganizationService getOrganizationService(){
+        return new OrganizationServiceWsImpl(configuration);
+    }
 
     /**
      * Instance web service
-     * @return istance of service
+     * @return instance of service
      */
     protected InstanceService getInstanceService(){
         return new InstanceServiceWsImpl(configuration);
@@ -64,7 +76,7 @@ public class QubellFacadeImpl implements QubellFacade {
                 instanceSpecification.getApplication().getId(),
                 instanceSpecification.getInstanceName(),
                 instanceSpecification.getVersion(),
-                launchSettings.getEnvironmentId(),
+                launchSettings.getEnvironment() != null ? launchSettings.getEnvironment().getId() : null,
                 launchSettings.getDestroyInterval(),
                 launchSettings.getParameters()
         );
@@ -91,6 +103,40 @@ public class QubellFacadeImpl implements QubellFacade {
      */
     public void runCommand(Instance instance, String commandName) throws InvalidCredentialsException, InvalidInputException {
         runCommand(instance, commandName, null);
+    }
+
+    public List<Application> getAllApplications() throws InvalidCredentialsException {
+        List<Application> applications = new ArrayList<Application>();
+        List<Organization> organizations = getOrganizations();
+
+        OrganizationService organizationService = getOrganizationService();
+
+        ApplicationTOA appTOA = new ApplicationTOA();
+
+        for(Organization org : organizations){
+            applications.addAll(appTOA.fromWs(organizationService.listApplications(org), org));
+        }
+
+        return applications;
+    }
+
+    public List<Environment> getAllEnvironments() throws InvalidCredentialsException {
+        List<Environment> environments = new ArrayList<Environment>();
+        List<Organization> organizations = getOrganizations();
+
+        OrganizationService organizationService = getOrganizationService();
+
+        EnvironmentTOA envTOA = new EnvironmentTOA();
+
+        for(Organization org : organizations){
+            environments.addAll(envTOA.fromWs(organizationService.listEnvironments(org), org));
+        }
+
+        return environments;
+    }
+
+    private List<com.qubell.services.ws.Organization> getOrganizations() throws InvalidCredentialsException {
+        return getOrganizationService().listOrganizations();
     }
 
     /**

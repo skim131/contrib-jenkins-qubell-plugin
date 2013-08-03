@@ -206,7 +206,7 @@ public class StartInstanceBuilder extends QubellBuilder {
         Instance instance;
         try {
             instance = getServiceFacade().launchInstance(new InstanceSpecification(application, updatedVersion),
-                    new LaunchSettings(environmentId, JsonParser.parseMap(extraParameters)));
+                    new LaunchSettings(new Environment(environmentId), JsonParser.parseMap(extraParameters)));
 
             logMessage(buildLog, "Launched instance %s", instance.getId());
             saveBuildVariable(build, INSTANCE_ID_KEY, instance.getId(), buildLog);

@@ -23,7 +23,8 @@ import java.util.Map;
  * @author Alex Krupnov
  */
 public class LaunchSettings {
-    private String environmentId;
+    private Environment environment;
+
     //Keep long value invalid by default so user has to specify proper value from interval of [-1, infinite)
     private long destroyInterval = Long.MIN_VALUE;
     private Map<String, Object> parameters;
@@ -46,10 +47,10 @@ public class LaunchSettings {
      * Initializes settings with parameters, destroy interval and  environment id
      * @param parameters launch parameters (optional)
      * @param destroyInterval instance destroy interval in milliseconds (optional), -1 for immortal instance
-     * @param environmentId environment id to be used (optional)
+     * @param environment environment to be used (optional)
      */
-    public LaunchSettings(String environmentId, long destroyInterval, Map<String, Object> parameters) {
-        this.environmentId = environmentId;
+    public LaunchSettings(Environment environment, long destroyInterval, Map<String, Object> parameters) {
+        this.environment = environment;
         this.destroyInterval = destroyInterval;
         this.parameters = parameters;
     }
@@ -57,18 +58,18 @@ public class LaunchSettings {
     /**
      * Initializes settings with parameters and  environment id
      * @param parameters launch parameters (optional)
-     * @param environmentId environment id to be used (optional)
+     * @param environment environment id to be used (optional)
      */
-    public LaunchSettings(String environmentId, Map<String, Object> parameters) {
-        this.environmentId = environmentId;
+    public LaunchSettings(Environment environment, Map<String, Object> parameters) {
+        this.environment = environment;
         this.parameters = parameters;
     }
 
     /**
-     * @return environment id to be used for launch or null
+     * @return environment where to launch the instance
      */
-    public String getEnvironmentId() {
-        return environmentId;
+    public Environment getEnvironment() {
+        return environment;
     }
 
     /**

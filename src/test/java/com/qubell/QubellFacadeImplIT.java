@@ -4,9 +4,11 @@ import com.qubell.services.*;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNotSame;
 
 /**
  * @author Alex Krupnov
@@ -43,6 +45,24 @@ public class QubellFacadeImplIT extends BaseServiceIT {
             "        - destroy:\n" +
             "            action: compute.shrink-all";
     private String applicationId = "51fcd380e4b06130966ff10a";
+
+    @Test
+    public void testGetAllApps() throws Exception{
+        QubellFacadeImpl facade = new QubellFacadeImpl(getTestConfiguration());
+        List<Application> apps = facade.getAllApplications();
+
+        assertNotNull(apps);
+        assertNotSame(0, apps.size());
+    }
+
+    @Test
+    public void testGetAllEnvs() throws Exception{
+        QubellFacadeImpl facade = new QubellFacadeImpl(getTestConfiguration());
+        List<Environment> envs = facade.getAllEnvironments();
+
+        assertNotNull(envs);
+        assertNotSame(0, envs.size());
+    }
 
 
     @Test

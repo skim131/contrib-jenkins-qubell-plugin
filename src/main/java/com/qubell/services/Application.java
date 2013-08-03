@@ -16,6 +16,7 @@
 
 package com.qubell.services;
 
+
 /**
  * Qubell application definition
  * @author Alex Krupnov
@@ -23,6 +24,7 @@ package com.qubell.services;
 public class Application {
     private String id;
     private String name;
+    private Organization organization;
 
     /**
      * Inits app with id, leaving name blank
@@ -34,10 +36,11 @@ public class Application {
 
     /**
      * Inits application with id and name
-     * @param id
-     * @param name
+     * @param id if of app
+     * @param name app name
+     * @param organization organization for app
      */
-    public Application(String id, String name) {
+    public Application(String id, String name, Organization organization) {
         this.id = id;
         this.name = name;
     }
@@ -54,5 +57,13 @@ public class Application {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Organization where app belongs to
+     * @return organization or null
+     */
+    public Organization getOrganization() {
+        return organization;
     }
 }
