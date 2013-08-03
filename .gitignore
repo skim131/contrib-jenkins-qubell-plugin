@@ -13,3 +13,5 @@ work
 .project
 build
 
+#tests
+test
