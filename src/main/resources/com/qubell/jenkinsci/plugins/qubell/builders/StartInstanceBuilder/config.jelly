@@ -18,11 +18,11 @@ limitations under the License.
          xmlns:t="/lib/hudson" xmlns:f="/lib/form">
 
     <f:entry field="applicationId" title="Application Id">
-        <f:textbox/>
+        <qubell:typeAheadTextbox localJson="${descriptor.applicationsTypeAheadJson}"/>
     </f:entry>
 
     <f:entry field="environmentId" title="Environment Id (optional)">
-        <f:textbox/>
+        <qubell:typeAheadTextbox localJson="${descriptor.environmentsTypeAheadJson}"/>
     </f:entry>
 
     <f:entry field="timeout" title="Timeout (s)">

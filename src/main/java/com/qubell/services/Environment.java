@@ -1,10 +1,13 @@
 package com.qubell.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents Qubell environment
  * @author Alex Krupnov
  */
-public class Environment {
+public class Environment implements TypeAheadDatum {
     private String id;
     private Organization organization;
     private String name;
@@ -51,5 +54,26 @@ public class Environment {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getValue() {
+        return getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public List<String> getTokens() {
+        List<String> tokens = new ArrayList<String>();
+        tokens.add(id);
+        if (name != null) {
+            for (String token : name.split(" ")) {
+                tokens.add(token);
+            }
+        }
+        return tokens;
     }
 }

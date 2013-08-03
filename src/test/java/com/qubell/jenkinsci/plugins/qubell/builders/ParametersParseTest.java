@@ -58,7 +58,7 @@ public class ParametersParseTest {
         map.put("rootValue", "root");
         map.put("nested", firstNesting);
 
-        String jsonString = JsonParser.serializeMap(map);
+        String jsonString = JsonParser.serialize(map);
         assertNotNull(jsonString);
     }
 }

@@ -1,0 +1,20 @@
+.tt-hint {
+    color: #999
+}
+
+.tt-dropdown-menu {
+    width: 300px;
+    margin-top: 3px;
+    background-color: #fff;
+    border: 1px solid black;
+}
+
+.tt-suggestion.tt-is-under-cursor {
+    color: #fff;
+    background-color: #0097cf;
+
+}
+
+.tt-suggestion p {
+    margin: 0;
+}

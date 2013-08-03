@@ -17,17 +17,43 @@
 package com.qubell.services;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Qubell application definition
+ *
  * @author Alex Krupnov
  */
-public class Application {
+public class Application implements TypeAheadDatum {
     private String id;
     private String name;
     private Organization organization;
 
     /**
+     * {@inheritDoc}
+     */
+    public String getValue() {
+        return getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public List<String> getTokens() {
+        List<String> tokens = new ArrayList<String>();
+        tokens.add(id);
+        if (name != null) {
+            for (String token : name.split(" ")) {
+                tokens.add(token);
+            }
+        }
+        return tokens;
+    }
+
+    /**
      * Inits app with id, leaving name blank
+     *
      * @param id
      */
     public Application(String id) {
@@ -36,13 +62,15 @@ public class Application {
 
     /**
      * Inits application with id and name
-     * @param id if of app
-     * @param name app name
+     *
+     * @param id           if of app
+     * @param name         app name
      * @param organization organization for app
      */
     public Application(String id, String name, Organization organization) {
         this.id = id;
         this.name = name;
+        this.organization = organization;
     }
 
     /**
@@ -61,6 +89,7 @@ public class Application {
 
     /**
      * Organization where app belongs to
+     *
      * @return organization or null
      */
     public Organization getOrganization() {

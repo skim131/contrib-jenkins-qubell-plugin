@@ -16,7 +16,7 @@ public class OrganizationServiceImplIT  extends BaseServiceIT {
     public void testGetOrganizations() throws Exception {
         OrganizationServiceWsImpl organizationService = new OrganizationServiceWsImpl(getTestConfiguration());
 
-        List<Organization> orgs = organizationService.listOrganizations();
+        List<com.qubell.services.ws.Organization> orgs = organizationService.listOrganizations();
 
         assertNotNull(orgs);
         assertNotSame(0, orgs.size());
@@ -25,7 +25,7 @@ public class OrganizationServiceImplIT  extends BaseServiceIT {
     @Test
     public void testGetApps() throws Exception {
         OrganizationServiceWsImpl organizationService = new OrganizationServiceWsImpl(getTestConfiguration());
-        Organization organization = new Organization();
+        com.qubell.services.ws.Organization organization = new com.qubell.services.ws.Organization();
 
         organization.setId(orgId);
         List<com.qubell.services.ws.Application> apps = organizationService.listApplications(organization);
@@ -37,10 +37,10 @@ public class OrganizationServiceImplIT  extends BaseServiceIT {
     @Test
     public void testGetEnvs() throws Exception {
         OrganizationServiceWsImpl organizationService = new OrganizationServiceWsImpl(getTestConfiguration());
-        Organization organization = new Organization();
+        com.qubell.services.ws.Organization organization = new com.qubell.services.ws.Organization();
 
         organization.setId(orgId);
-        List<Environment> envs = organizationService.listEnvironments(organization);
+        List<com.qubell.services.ws.Environment> envs = organizationService.listEnvironments(organization);
 
         assertNotNull(envs);
         assertNotSame(0, envs.size());

@@ -16,6 +16,7 @@
 
 package com.qubell.jenkinsci.plugins.qubell.builders;
 
+import com.qubell.jenkinsci.plugins.qubell.Configuration;
 import com.qubell.jenkinsci.plugins.qubell.JsonParser;
 import com.qubell.services.*;
 import com.qubell.services.exceptions.InvalidCredentialsException;
@@ -259,13 +260,30 @@ public class StartInstanceBuilder extends QubellBuilder {
         }
 
         /**
+         * Gets application list json for typeahead functionality
+         * @return json object for apps list
+         * @throws InvalidCredentialsException when credentials invalid
+         */
+        public String getApplicationsTypeAheadJson() throws InvalidCredentialsException {
+            return JsonParser.serialize(new QubellFacadeImpl(Configuration.get()).getAllApplications());
+        }
+
+        /**
+         * Gets environments list json for typeahead functionality
+         * @return json object for envs list
+         * @throws InvalidCredentialsException when credentials invalid
+         */
+        public String getEnvironmentsTypeAheadJson() throws InvalidCredentialsException {
+            return JsonParser.serialize(new QubellFacadeImpl(Configuration.get()).getAllEnvironments());
+        }
+
+        /**
          * This human readable name is used in the configuration screen.
          */
         public String getDisplayName() {
             return "Qubell: Launch Application Instance";
         }
-
-
     }
+
 }
 
