@@ -44,7 +44,7 @@ public class QubellFacadeImplIT extends BaseServiceIT {
             "  steps:\n" +
             "        - destroy:\n" +
             "            action: compute.shrink-all";
-    private String applicationId = "51fcd380e4b06130966ff10a";
+    private String applicationId = "52000761e4b0b2a404bf029f";
 
     @Test
     public void testGetAllApps() throws Exception{
@@ -81,7 +81,7 @@ public class QubellFacadeImplIT extends BaseServiceIT {
 
 
         Instance instance = facade.launchInstance(
-                new InstanceSpecification(application, "test instance", null),
+                new InstanceSpecification(application, "test instance", version),
                 new LaunchSettings(myParams)
                 );
 

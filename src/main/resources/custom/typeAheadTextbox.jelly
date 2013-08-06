@@ -77,10 +77,9 @@
                   name: '${attrs.name ?: '_.'+attrs.field}',
                   engine: Hogan,
                   template: [
-                    '<p class="ta-name">{{name}} (<strong>{{id}}</strong>)</p>',
-                    '<p class="repo-id"><strong>Organization:</strong> {{organization.name}} (<strong>{{organization.id}}</strong>)</p>'
+                    '<p class="name-info"><span class="item-name">{{name}}</span> <span class="item-id">({{id}})</span></p>',
+                    '<p class="org-info"><span class="org-name">Organization:</span> {{organization.name}} <span class="org-id">({{organization.id}})</span></p>'
                   ].join(''),
-
                   local: ${attrs.localJson}
                 });
               });

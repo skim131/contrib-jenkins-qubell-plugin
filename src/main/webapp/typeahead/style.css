@@ -1,12 +1,92 @@
+/* base styles */
+/* ----------- */
+
+html {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #333;
+}
+
+.title,
+.example-name {
+    font-family: Prociono;
+}
+
+p {
+    margin: 0 0 10px 0;
+}
+
+/* site theme */
+/* ---------- */
+
+.title {
+    margin: 20px 0 0 0;
+    font-size: 64px;
+}
+
+.example {
+    padding: 30px 0;
+}
+
+.example-name {
+    margin: 20px 0;
+    font-size: 32px;
+}
+
+.demo {
+    position: relative;
+    *z-index: 1;
+    margin: 50px 0;
+}
+
+.typeahead,
+.tt-query,
+.tt-hint {
+    outline: none;
+}
+
+.typeahead {
+    background-color: #fff;
+}
+
+.typeahead:focus {
+    border: 2px solid #0097cf;
+}
+
+
 .tt-hint {
     color: #999
 }
 
 .tt-dropdown-menu {
-    width: 300px;
-    margin-top: 3px;
+    width: 422px;
+    margin-top: 12px;
+    padding: 8px 0;
     background-color: #fff;
-    border: 1px solid black;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+.item-name{
+    font-weight: bold;
+    font-size: 120%;
+}
+.org-info{
+    font-style: italic;
+    white-space: normal;
+    font-size: 0.5em;
+}
+
+.tt-suggestion {
+    padding: 3px 20px;
+    font-size: 18px;
+    line-height: 24px;
 }
 
 .tt-suggestion.tt-is-under-cursor {
@@ -17,4 +97,8 @@
 
 .tt-suggestion p {
     margin: 0;
+}
+
+.gist {
+    font-size: 14px;
 }
