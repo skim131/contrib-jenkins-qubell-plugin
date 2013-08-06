@@ -36,7 +36,10 @@ public class Configuration extends GlobalConfiguration {
     private String login;
     private String password;
     private int statusPollingInterval;
+    private boolean skipCertificateChecks;
+
     private static final int DEFAULT_POLLING_INTERVAL = 5;
+
 
     /**
      * @return the Jenkins managed singleton for the configuration object
@@ -50,10 +53,11 @@ public class Configuration extends GlobalConfiguration {
     }
 
 
-    public Configuration(String url, String login, String password) {
+    public Configuration(String url, String login, String password, boolean skipCertificateChecks) {
         this.url = url;
         this.login = login;
         this.password = password;
+        this.skipCertificateChecks = skipCertificateChecks;
     }
 
     /**
@@ -71,6 +75,7 @@ public class Configuration extends GlobalConfiguration {
         password = formData.getString("password");
         url = formData.getString("url");
         statusPollingInterval = formData.getInt("statusPollingInterval");
+        skipCertificateChecks = formData.getBoolean("skipCertificateChecks");
         // ^Can also use req.bindJSON(this, formData);
         //  (easier when there are many fields; need set* methods for this, like setUseFrench)
         save();
@@ -83,6 +88,14 @@ public class Configuration extends GlobalConfiguration {
      */
     public String getLogin() {
         return login;
+    }
+
+    /**
+     * If set to true, authority and other parameters of SSL certificate won't be checked
+     * @return true when check should be skipped
+     */
+    public boolean isSkipCertificateChecks() {
+        return skipCertificateChecks;
     }
 
     /**

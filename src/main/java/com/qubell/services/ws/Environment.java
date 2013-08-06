@@ -1,9 +1,12 @@
 package com.qubell.services.ws;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 /**
  * WS wrapper for Qubell app
  * @author Alex Krupnov
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Environment {
     private String id;
     private String name;

@@ -6,6 +6,7 @@ import org.apache.cxf.jaxrs.client.WebClient;
 
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.WebApplicationException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class OrganizationServiceWsImpl extends WebServiceBase implements Organiz
         WebClient client = getWebClient();
 
         try {
-            List<Organization> response = (List<Organization>) client.path("organizations").get(List.class);
+            List<Organization> response = new ArrayList<Organization>(client.path("organizations").getCollection(Organization.class));
             return response;
 
         } catch (NotFoundException nfe) {
@@ -48,9 +49,9 @@ public class OrganizationServiceWsImpl extends WebServiceBase implements Organiz
         WebClient client = getWebClient();
 
         try {
-            List<Application> response = (List<Application>) client.path("organizations").path(organization.getId()).
+            List<Application> response = new ArrayList<Application>(client.path("organizations").path(organization.getId()).
                     path("applications")
-                    .get(List.class);
+                    .getCollection(Application.class));
             return response;
 
         } catch (NotFoundException nfe) {
@@ -69,9 +70,9 @@ public class OrganizationServiceWsImpl extends WebServiceBase implements Organiz
         WebClient client = getWebClient();
 
         try {
-            List<Environment> response = (List<Environment>) client.path("organizations").path(organization.getId()).
+            List<Environment> response = new ArrayList<Environment>(client.path("organizations").path(organization.getId()).
                     path("environments")
-                    .get(List.class);
+                    .getCollection(Environment.class));
             return response;
 
         } catch (NotFoundException nfe) {

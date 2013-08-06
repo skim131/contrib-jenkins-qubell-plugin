@@ -8,6 +8,6 @@ import com.qubell.jenkinsci.plugins.qubell.Configuration;
  */
 public class BaseServiceIT {
     protected Configuration getTestConfiguration(){
-        return new Configuration("https://kohls-beta.qubell.com/","a.krupnov@gmail.com","123123123");
+        return new Configuration("https://secure.dev.qubell.com/","a.krupnov@gmail.com","123123123", true);
     }
 }

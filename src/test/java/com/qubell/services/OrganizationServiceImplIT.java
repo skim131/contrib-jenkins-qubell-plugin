@@ -10,7 +10,7 @@ import static junit.framework.Assert.assertNotSame;
 
 public class OrganizationServiceImplIT  extends BaseServiceIT {
 
-    private final String orgId = "51fc2492e4b06130966ff0f4";
+    private final String orgId = "520006e0e4b0b2a404bf0289";
 
     @Test
     public void testGetOrganizations() throws Exception {
@@ -19,7 +19,10 @@ public class OrganizationServiceImplIT  extends BaseServiceIT {
         List<com.qubell.services.ws.Organization> orgs = organizationService.listOrganizations();
 
         assertNotNull(orgs);
+
         assertNotSame(0, orgs.size());
+        assertNotNull(orgs.get(0).getId());
+        assertNotNull(orgs.get(0).getName());
     }
 
     @Test
@@ -31,7 +34,11 @@ public class OrganizationServiceImplIT  extends BaseServiceIT {
         List<com.qubell.services.ws.Application> apps = organizationService.listApplications(organization);
 
         assertNotNull(apps);
+
         assertNotSame(0, apps.size());
+        assertNotNull(apps.get(0).getId());
+        assertNotNull(apps.get(0).getName());
+        assertNotNull(apps.get(0).getOrganizationId());
     }
 
     @Test
@@ -44,6 +51,8 @@ public class OrganizationServiceImplIT  extends BaseServiceIT {
 
         assertNotNull(envs);
         assertNotSame(0, envs.size());
+        assertNotNull(envs.get(0).getId());
+        assertNotNull(envs.get(0).getName());
     }
 
 }

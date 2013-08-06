@@ -1,9 +1,12 @@
 package com.qubell.services;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 /**
  * Represents Qubell organization record
  * @author Alex Krupov
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Organization {
     private String name;
     private String id;
