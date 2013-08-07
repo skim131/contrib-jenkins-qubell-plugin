@@ -23,7 +23,7 @@ package com.qubell.services;
 public class InstanceSpecification {
     private Application application;
     private String instanceName;
-    private String version;
+    private Integer version;
 
     /**
      * Initializes Instance Specification with target application
@@ -38,7 +38,7 @@ public class InstanceSpecification {
      * @param application target application to use
      * @version version of application to launch
      */
-    public InstanceSpecification(Application application, String version) {
+    public InstanceSpecification(Application application, Integer version) {
         this.application = application;
         this.version = version;
     }
@@ -49,7 +49,7 @@ public class InstanceSpecification {
      * @param instanceName desired instance friendly name (optional)
      * @param version desired app version (optional)
      */
-    public InstanceSpecification(Application application, String instanceName, String version) {
+    public InstanceSpecification(Application application, String instanceName, Integer version) {
         this.application = application;
         this.instanceName = instanceName;
         this.version = version;
@@ -75,7 +75,7 @@ public class InstanceSpecification {
      * Version of application to use
      * @return version or null
      */
-    public String getVersion() {
+    public Integer getVersion() {
         return version;
     }
 }

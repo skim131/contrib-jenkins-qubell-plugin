@@ -37,7 +37,7 @@ public interface ApplicationService {
      * @return server response
      * @throws InvalidCredentialsException when credentials are invalid
      */
-    LaunchInstanceResponse launch(String applicationId, String instanceName, String version, String environmentId, long destroyInterval, Map<String, Object> parameters) throws InvalidCredentialsException;
+    LaunchInstanceResponse launch(String applicationId, String instanceName, Integer version, String environmentId, long destroyInterval, Map<String, Object> parameters) throws InvalidCredentialsException;
 
     /**
      * Updates application manifest

@@ -61,7 +61,7 @@ public class ApplicationServiceImplIT extends BaseServiceIT {
     public void testInvalidCredentialsForLaunch() throws Exception
     {
         Configuration testConfiguration = getTestConfiguration();
-        ApplicationServiceWsImpl applicationService = new ApplicationServiceWsImpl(new Configuration(testConfiguration.getUrl(), testConfiguration.getLogin(), "wrong password", true));
+        ApplicationServiceWsImpl applicationService = new ApplicationServiceWsImpl(new Configuration(testConfiguration.getUrl(), testConfiguration.getLogin(), "wrong password", true, true));
 
         Map<String,Object> parameters = new HashMap<String, Object>();
         parameters.put("customParam", "value");
@@ -73,7 +73,7 @@ public class ApplicationServiceImplIT extends BaseServiceIT {
     public void testInvalidCredentialsForManifestUpdate() throws Exception
     {
         Configuration testConfiguration = getTestConfiguration();
-        ApplicationServiceWsImpl applicationService = new ApplicationServiceWsImpl(new Configuration(testConfiguration.getUrl(), testConfiguration.getLogin(), "wrong password", true));
+        ApplicationServiceWsImpl applicationService = new ApplicationServiceWsImpl(new Configuration(testConfiguration.getUrl(), testConfiguration.getLogin(), "wrong password", true, true));
 
         UpdateManifestResponse response = applicationService.updateManifest(applicationId, superSimpleManifest);
     }

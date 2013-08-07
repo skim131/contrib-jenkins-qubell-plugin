@@ -61,13 +61,13 @@ public class InstanceServiceWsImplIT extends BaseServiceIT {
     @Test(expected = InvalidCredentialsException.class)
     public void testInvalidCredentialsForStatus() throws Exception{
 
-        InstanceStatusResponse status = executeWorkflowAndGetStatus("returnstuff", getTestConfiguration(), new Configuration(getTestConfiguration().getUrl(), "invalid", "invalid", true));
+        InstanceStatusResponse status = executeWorkflowAndGetStatus("returnstuff", getTestConfiguration(), new Configuration(getTestConfiguration().getUrl(), "invalid", "invalid", true, true));
     }
 
     @Test(expected = InvalidCredentialsException.class)
     public void testInvalidCredentialsForRunCommand() throws Exception{
 
-        InstanceStatusResponse status = executeWorkflowAndGetStatus("returnstuff", new Configuration(getTestConfiguration().getUrl(), "invalid", "invalid", true), getTestConfiguration());
+        InstanceStatusResponse status = executeWorkflowAndGetStatus("returnstuff", new Configuration(getTestConfiguration().getUrl(), "invalid", "invalid", true, true), getTestConfiguration());
     }
 
 

@@ -187,11 +187,11 @@ public class StartInstanceBuilder extends QubellBuilder {
 
         Application application = new Application(applicationId);
 
-        String updatedVersion;
+        Integer updatedVersion;
 
         try {
             updatedVersion = getServiceFacade().updateManifest(application, manifest);
-            logMessage(buildLog, "Manifest updated. New version is %s", updatedVersion);
+            logMessage(buildLog, "Manifest updated. New version is %s", updatedVersion.toString());
         } catch (InvalidCredentialsException e) {
             logMessage(buildLog, "Error when updating manifest: invalid credentials.");
             build.setResult(Result.FAILURE);

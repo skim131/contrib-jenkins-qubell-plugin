@@ -19,6 +19,8 @@ package com.qubell.services.ws;
 import com.qubell.jenkinsci.plugins.qubell.Configuration;
 import hudson.cli.NoCheckTrustManager;
 import org.apache.cxf.configuration.jsse.TLSClientParameters;
+import org.apache.cxf.interceptor.LoggingInInterceptor;
+import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.apache.cxf.jaxrs.impl.RuntimeDelegateImpl;
 import org.apache.cxf.transport.http.HTTPConduit;
@@ -34,6 +36,7 @@ import java.util.List;
 
 /**
  * Base Web Service for Qubell API integration
+ *
  * @author Alex Krupnov
  */
 public abstract class WebServiceBase {
@@ -48,6 +51,7 @@ public abstract class WebServiceBase {
 
     /**
      * Returns an Apache CXF Web Client
+     *
      * @return client new instance
      */
     protected WebClient getWebClient() {
@@ -62,7 +66,7 @@ public abstract class WebServiceBase {
         }
 
         WebClient client = WebClient.create(url.concat("api/1/"), providerList);
-        if(configuration.isSkipCertificateChecks()){
+        if (configuration.isSkipCertificateChecks()) {
             configurePassThroughSSLCheck(client);
         }
 
@@ -76,6 +80,10 @@ public abstract class WebServiceBase {
         client.accept(MediaType.APPLICATION_JSON_TYPE);
         client.header("Content-Type", MediaType.APPLICATION_JSON_TYPE);
 
+        if (configuration.isEnableMessageLogging()) {
+            WebClient.getConfig(client).getInInterceptors().add(new LoggingInInterceptor());
+            WebClient.getConfig(client).getOutInterceptors().add(new LoggingOutInterceptor());
+        }
 
         return client;
     }
@@ -102,10 +110,10 @@ public abstract class WebServiceBase {
                 .getHttpConduit();
 
         TLSClientParameters params = conduit.getTlsClientParameters();
-        if(params == null){
+        if (params == null) {
             params = new TLSClientParameters();
         }
-        params.setTrustManagers(new TrustManager[] { tm   });
+        params.setTrustManagers(new TrustManager[]{tm});
         params.setDisableCNCheck(true);
 
         conduit.setTlsClientParameters(params);

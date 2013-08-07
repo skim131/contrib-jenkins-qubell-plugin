@@ -1,6 +1,10 @@
 package com.qubell;
 
 import com.qubell.services.*;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.PatternLayout;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -71,7 +75,7 @@ public class QubellFacadeImplIT extends BaseServiceIT {
 
         Application application = new Application(applicationId);
 
-        String version = facade.updateManifest(application, new Manifest(appManifest));
+        Integer version = facade.updateManifest(application, new Manifest(appManifest));
 
         assertNotNull(version);
 

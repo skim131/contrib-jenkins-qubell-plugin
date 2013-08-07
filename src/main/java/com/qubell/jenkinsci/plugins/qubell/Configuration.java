@@ -37,6 +37,7 @@ public class Configuration extends GlobalConfiguration {
     private String password;
     private int statusPollingInterval;
     private boolean skipCertificateChecks;
+    private boolean enableMessageLogging = false;
 
     private static final int DEFAULT_POLLING_INTERVAL = 5;
 
@@ -53,11 +54,12 @@ public class Configuration extends GlobalConfiguration {
     }
 
 
-    public Configuration(String url, String login, String password, boolean skipCertificateChecks) {
+    public Configuration(String url, String login, String password, boolean skipCertificateChecks, boolean enableMessageLogging) {
         this.url = url;
         this.login = login;
         this.password = password;
         this.skipCertificateChecks = skipCertificateChecks;
+        this.enableMessageLogging = enableMessageLogging;
     }
 
     /**
@@ -121,6 +123,14 @@ public class Configuration extends GlobalConfiguration {
     public int getStatusPollingInterval() {
         //Since int has default value, we can't use jelly's default for int fields, adding default on java code level
         return statusPollingInterval != 0 ? statusPollingInterval : DEFAULT_POLLING_INTERVAL;
+    }
+
+    /**
+     * When true, in and out messages are appended to CXF specific logger
+     * @return true when extra logging enabled, false otherwise
+     */
+    public boolean isEnableMessageLogging() {
+        return enableMessageLogging;
     }
 
     /**

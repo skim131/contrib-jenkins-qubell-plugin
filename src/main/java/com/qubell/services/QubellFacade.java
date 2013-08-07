@@ -44,7 +44,7 @@ public interface QubellFacade {
      * @throws InvalidCredentialsException when credentials are invalid
      * @throws InvalidInputException when manifest is invalid
      */
-    String updateManifest(Application application, Manifest manifest) throws InvalidCredentialsException, InvalidInputException;
+    Integer updateManifest(Application application, Manifest manifest) throws InvalidCredentialsException, InvalidInputException;
 
     /**
      * Gets status of instance, see {@link InstanceStatus}

@@ -87,7 +87,7 @@ public class QubellFacadeImpl implements QubellFacade {
     /**
      * {@inheritDoc}
      */
-    public String updateManifest(Application application, Manifest manifest) throws InvalidCredentialsException, InvalidInputException {
+    public Integer updateManifest(Application application, Manifest manifest) throws InvalidCredentialsException, InvalidInputException {
         return getApplicationService().updateManifest(application.getId(), manifest.getContent()).getVersion();
     }
 
