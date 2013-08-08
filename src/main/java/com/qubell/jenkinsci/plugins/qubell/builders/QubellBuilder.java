@@ -216,7 +216,7 @@ public abstract class QubellBuilder extends Builder {
             Map<String, Object> returnValues = status.getReturnValues();
             if (returnValues != null && returnValues.size() > 0) {
                 logMessage(buildLog, "Instance contains %d return values", returnValues.size());
-                logMessage(buildLog, "Return values dump: \n %s", JsonParser.serializeMap(returnValues));
+                logMessage(buildLog, "Return values dump: \n %s", JsonParser.serialize(returnValues));
             }
         }
         if (!StringUtils.isBlank(status.getErrorMessage())) {
@@ -321,7 +321,7 @@ public abstract class QubellBuilder extends Builder {
         }
         Computer currentMachine = Computer.currentComputer();
 
-        String outputContents = JsonParser.serializeMap(resultMap);
+        String outputContents = JsonParser.serialize(resultMap);
 
         FilePath workspaceOutput = build.getWorkspace().child(outputFilePath);
         try {

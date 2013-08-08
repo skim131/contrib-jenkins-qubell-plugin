@@ -14,14 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+<j:jelly xmlns:j="jelly:core" xmlns:qubell="/custom" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
          xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+
     <f:entry field="applicationId" title="Application Id">
-        <f:textbox/>
+        <qubell:typeAheadTextbox localJson="${descriptor.applicationsTypeAheadJson}"/>
     </f:entry>
 
     <f:entry field="environmentId" title="Environment Id (optional)">
-        <f:textbox/>
+        <qubell:typeAheadTextbox localJson="${descriptor.environmentsTypeAheadJson}"/>
     </f:entry>
 
     <f:entry field="timeout" title="Timeout (s)">
@@ -29,7 +30,7 @@ limitations under the License.
     </f:entry>
 
     <f:entry field="extraParameters" title="Extra parameters (json map)">
-        <f:textarea default="{}"/>
+        <qubell:aceEditor default="{}"/>
     </f:entry>
 
 
