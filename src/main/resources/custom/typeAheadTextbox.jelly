@@ -65,7 +65,7 @@
 
   <!-- mostly pass-through all the attributes -->
   <m:input xmlns:m="jelly:hudson.util.jelly.MorphTagLibrary"
-         class="typeahead${controlId} setting-input ${attrs.checkUrl!=null?'validated':''} ${attrs.autoCompleteUrl!=null?'auto-complete':null} ${attrs.clazz}"
+         class="typeahead typeahead${controlId} setting-input ${attrs.checkUrl!=null?'validated':''} ${attrs.autoCompleteUrl!=null?'auto-complete':null} ${attrs.clazz}"
          name="${attrs.name ?: '_.'+attrs.field}"
          value="${attrs.value ?: instance[attrs.field] ?: attrs.default}"
          type="text"
@@ -77,8 +77,8 @@
                   name: '${attrs.name ?: '_.'+attrs.field}',
                   engine: Hogan,
                   template: [
-                    '<p class="name-info"><span class="item-name">{{name}}</span> <span class="item-id">({{id}})</span></p>',
-                    '<p class="org-info"><span class="org-name">Organization:</span> {{organization.name}} <span class="org-id">({{organization.id}})</span></p>'
+                    '<p class="name-info"><span class="item-name">{{name}} </span> <span class="item-id">({{id}})</span></p>',
+                    '<p class="org-info"><span class="org-name">Organization: {{organization.name}} </span> <span class="org-id">({{organization.id}})</span></p>'
                   ].join(''),
                   local: ${attrs.localJson}
                 });
