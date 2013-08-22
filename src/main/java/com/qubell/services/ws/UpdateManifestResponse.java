@@ -24,13 +24,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class UpdateManifestResponse {
-    private String version;
+    private Integer version;
 
     /**
      * Version after manifest is updated
      * @return version string value
      */
-    public String getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
@@ -38,7 +38,7 @@ public class UpdateManifestResponse {
      * Sets version
      * @param version version string
      */
-    public void setVersion(String version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 }

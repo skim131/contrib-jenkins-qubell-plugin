@@ -43,7 +43,7 @@ public class ApplicationServiceWsImpl extends WebServiceBase implements Applicat
     /**
      * {@inheritDoc}
      */
-    public LaunchInstanceResponse launch(String applicationId, String instanceName, String version, String environmentId, long destroyInterval, Map<String, Object> parameters) throws InvalidCredentialsException {
+    public LaunchInstanceResponse launch(String applicationId, String instanceName, Integer version, String environmentId, long destroyInterval, Map<String, Object> parameters) throws InvalidCredentialsException {
         WebClient client = getWebClient();
 
 

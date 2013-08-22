@@ -55,15 +55,15 @@ public class JsonParser {
 
     /**
      * Serializes a free form map to json string
-     * @param map map to be serialized to string
+     * @param obj object to be serialized to string
      * @return string json
      */
-    public static String serializeMap(Map<String, Object> map) {
+    public static String serialize(Object obj) {
         JsonFactory factory = new JsonFactory();
         ObjectMapper mapper = new ObjectMapper(factory);
 
         try {
-            return mapper.writeValueAsString(map);
+            return mapper.writeValueAsString(obj);
         } catch (IOException e) {
             return null;
         }

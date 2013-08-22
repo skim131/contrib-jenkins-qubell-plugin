@@ -16,6 +16,7 @@
 
 package com.qubell.jenkinsci.plugins.qubell.builders;
 
+import com.qubell.jenkinsci.plugins.qubell.Configuration;
 import com.qubell.jenkinsci.plugins.qubell.JsonParser;
 import com.qubell.services.*;
 import com.qubell.services.exceptions.InvalidCredentialsException;
@@ -186,11 +187,11 @@ public class StartInstanceBuilder extends QubellBuilder {
 
         Application application = new Application(applicationId);
 
-        String updatedVersion;
+        Integer updatedVersion;
 
         try {
             updatedVersion = getServiceFacade().updateManifest(application, manifest);
-            logMessage(buildLog, "Manifest updated. New version is %s", updatedVersion);
+            logMessage(buildLog, "Manifest updated. New version is %s", updatedVersion.toString());
         } catch (InvalidCredentialsException e) {
             logMessage(buildLog, "Error when updating manifest: invalid credentials.");
             build.setResult(Result.FAILURE);
@@ -206,7 +207,7 @@ public class StartInstanceBuilder extends QubellBuilder {
         Instance instance;
         try {
             instance = getServiceFacade().launchInstance(new InstanceSpecification(application, updatedVersion),
-                    new LaunchSettings(environmentId, JsonParser.parseMap(extraParameters)));
+                    new LaunchSettings(new Environment(environmentId), JsonParser.parseMap(extraParameters)));
 
             logMessage(buildLog, "Launched instance %s", instance.getId());
             saveBuildVariable(build, INSTANCE_ID_KEY, instance.getId(), buildLog);
@@ -259,13 +260,30 @@ public class StartInstanceBuilder extends QubellBuilder {
         }
 
         /**
+         * Gets application list json for typeahead functionality
+         * @return json object for apps list
+         * @throws InvalidCredentialsException when credentials invalid
+         */
+        public String getApplicationsTypeAheadJson() throws InvalidCredentialsException {
+            return JsonParser.serialize(new QubellFacadeImpl(Configuration.get()).getAllApplications());
+        }
+
+        /**
+         * Gets environments list json for typeahead functionality
+         * @return json object for envs list
+         * @throws InvalidCredentialsException when credentials invalid
+         */
+        public String getEnvironmentsTypeAheadJson() throws InvalidCredentialsException {
+            return JsonParser.serialize(new QubellFacadeImpl(Configuration.get()).getAllEnvironments());
+        }
+
+        /**
          * This human readable name is used in the configuration screen.
          */
         public String getDisplayName() {
             return "Qubell: Launch Application Instance";
         }
-
-
     }
+
 }
 

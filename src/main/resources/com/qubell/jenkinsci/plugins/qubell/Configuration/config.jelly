@@ -21,6 +21,11 @@ limitations under the License.
             <f:textbox default="https://express.qubell.com/"/>
         </f:entry>
 
+        <f:entry title="Skip SSL Certificate validation" field="skipCertificateChecks"
+                 description="Use this option for self signed certificates">
+                <f:checkbox/>
+        </f:entry>
+
         <f:entry title="Login" field="login"
                  description="Your Qubell login">
             <f:textbox />

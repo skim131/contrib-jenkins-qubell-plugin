@@ -14,8 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+<j:jelly xmlns:j="jelly:core" xmlns:qubell="/custom" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
          xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+
 
     <f:optionalBlock name="instanceOptions" title="Use custom instance id" checked="${instance.instanceId != null}">
         <f:entry title="Custom Instance Id" field="instanceId" value="${instance.instanceId}">
@@ -32,7 +33,7 @@ limitations under the License.
     </f:entry>
 
     <f:entry field="extraParameters" title="Extra parameters (json map)">
-        <f:textarea default="{}"/>
+        <qubell:aceEditor default="{}"/>
     </f:entry>
 
     <f:entry field="outputFilePath" title="Relative path to command output file">

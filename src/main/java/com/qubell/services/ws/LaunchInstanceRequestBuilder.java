@@ -19,7 +19,7 @@ package com.qubell.services.ws;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * Builder for launch instance request, see {@link ApplicationService#launch(String, String, String, String, long, java.util.Map)}
+ * Builder for launch instance request, see {@link ApplicationService#launch(String, String, Integer, String, long, java.util.Map)}
  * @author Alex Krupnov
  */
 public class LaunchInstanceRequestBuilder extends AbstractRequestBuilder<LaunchInstanceRequestBuilder> {
@@ -36,8 +36,8 @@ public class LaunchInstanceRequestBuilder extends AbstractRequestBuilder<LaunchI
      * @param value of version
      * @return builder itself
      */
-    public LaunchInstanceRequestBuilder addVersion(String value) {
-        if (!StringUtils.isBlank(value)) {
+    public LaunchInstanceRequestBuilder addVersion(Integer value) {
+        if (value > 0) {
             targetFields.put(VERSION_KEY, value);
         }
         return this;
